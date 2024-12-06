@@ -8,45 +8,6 @@ from newscatcherapi import NewsCatcherApiClient
 newscatcherapi = NewsCatcherApiClient(x_api_key=NEWS_CATCHER_API_KEY)
 
 
-def appstore_scraper(query, country="us", limit=10):
-    url = "https://itunes.apple.com/search"
-    params = {"term": query, "country": country, "entity": "software", "limit": limit}
-
-    response = requests.get(url, params=params)
-
-    if response.status_code == 200:
-        data = response.json()
-        apps = []
-        reviews = []
-        for app in data.get("results", []):
-            apps.append(
-                {
-                    "app_name": app.get("trackName"),
-                    "app_id": app.get("trackId"),
-                }
-            )
-
-        for app in apps:
-            review = AppStore(
-                country=country, app_name=app["app_name"], app_id=app["app_id"]
-            )
-            review.review(how_many=limit)
-            reviews.append(
-                {
-                    "app_name": app["app_name"],
-                    "app_id": app["app_id"],
-                    "reviews": review.reviews,
-                }
-            )
-
-        return reviews
-
-    else:
-        return {
-            "error": "Failed to retrive data. Status code: " + str(response.status_code)
-        }
-
-
 def googleplay_scraper(query, limit=10):
 
     # remove spaces from query
@@ -100,6 +61,50 @@ def googleplay_scraper(query, limit=10):
     return output_data
 
 
+def x_twitter_scraper(query, limit=10):
+    tweets = "Not implemented yet"
+    return tweets
+
+
+def appstore_scraper(query, country="us", limit=10):
+    url = "https://itunes.apple.com/search"
+    params = {"term": query, "country": country, "entity": "software", "limit": limit}
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        apps = []
+        reviews = []
+        for app in data.get("results", []):
+            apps.append(
+                {
+                    "app_name": app.get("trackName"),
+                    "app_id": app.get("trackId"),
+                }
+            )
+
+        for app in apps:
+            review = AppStore(
+                country=country, app_name=app["app_name"], app_id=app["app_id"]
+            )
+            review.review(how_many=limit)
+            reviews.append(
+                {
+                    "app_name": app["app_name"],
+                    "app_id": app["app_id"],
+                    "reviews": review.reviews,
+                }
+            )
+
+        return reviews
+
+    else:
+        return {
+            "error": "Failed to retrive data. Status code: " + str(response.status_code)
+        }
+
+
 def news_scraper(query, limit=3):
     q = f"{query} + 'apps'"
     lang = "en"
@@ -112,8 +117,3 @@ def news_scraper(query, limit=3):
     )
 
     return all_articles
-
-
-def x_twitter_scraper(query, limit=10):
-    tweets =  'Not implemented yet'
-    return tweets
