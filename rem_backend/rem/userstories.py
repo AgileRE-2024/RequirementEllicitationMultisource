@@ -40,14 +40,14 @@ def createUserStories(_id):
 
         # Apply the updates to the database
         query_collection.update_one({"_id": _id}, {"$set": updates})
-    
+
 
 def getUniqueWhat(stories):
     what = []
     for story in stories:
         what.append(story['what'])
     return list(set(what))        
-    
+
 def getUniqueWho(stories):
     who = []
     for story in stories:
@@ -55,12 +55,11 @@ def getUniqueWho(stories):
     return list(set(who))
 
 
-
-def handleReviews(apps):
+def handleNewsData(articles):
     stories = []
     _id = str(uuid.uuid4())
-    for app in apps:
-        for story in app['stories']:
+    for article in articles:
+        for story in article["stories"]:
             stories.append({
                 'id': _id,
                 'user_story': f'As a {story["who"]} I want to {story["what"]}',\
@@ -71,11 +70,12 @@ def handleReviews(apps):
 
     return stories
 
-def handleNewsData(articles):
+
+def handleReviews(apps):
     stories = []
     _id = str(uuid.uuid4())
-    for article in articles:
-        for story in article['stories']:
+    for app in apps:
+        for story in app["stories"]:
             stories.append({
                 'id': _id,
                 'user_story': f'As a {story["who"]} I want to {story["what"]}',\
