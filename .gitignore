@@ -1,0 +1,37 @@
+# dependencies
+rem-frontend/node_modules
+rem-frontend/.pnp
+rem-frontend/.pnp.js
+rem-frontend/.yarn/install-state.gz
+
+# testing
+rem-frontend/coverage
+
+# next.js
+rem-frontend/.next/
+rem-frontend/out/
+
+# production
+rem-frontend/build
+
+# misc
+rem-frontend/.DS_Store
+rem-frontend/*.pem
+
+# debug
+rem-frontend/npm-debug.log*
+rem-frontend/yarn-debug.log*
+rem-frontend/yarn-error.log*
+
+# local env files
+rem-frontend/.env*.local
+
+# vercel
+rem-frontend/.vercel
+
+# typescript
+rem-frontend/*.tsbuildinfo
+rem-frontend/next-env.d.ts
+
+#backend
+./rem_backend/.env

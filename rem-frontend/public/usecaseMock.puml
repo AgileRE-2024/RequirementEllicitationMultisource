@@ -1,0 +1,14 @@
+@startuml usecaseMock
+left to right direction
+actor User
+
+User --> (Customization Options) : Wants more customization options
+User --> (Calendar Synchronization) : Wants the app to sync with calendar
+User --> (Fix Crashes on Task Addition) : Wants the app to not crash when adding tasks
+User --> (Google Calendar Integration) : Wants integration with Google Calendar
+User --> (Improved UI Design) : Wants better UI for quicker navigation
+User --> (Fix App Stability) : Wants the app to be stable and bug-free
+User --> (Automatic Task Reminders) : Wants automatic reminders for tasks
+User --> (Productivity Tool Integration) : Wants integration with other productivity tools
+
+@enduml
