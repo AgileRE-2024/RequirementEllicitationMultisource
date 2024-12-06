@@ -45,7 +45,7 @@ def extract_goals(_id):
     
     if updates:
         query_collection.update_one({"_id": _id}, {"$set": updates})
-   
+
 def find_matches_review(doc):
     matches = matcher(doc)
     results = []
@@ -154,20 +154,6 @@ def find_matches_news(doc):
 
     return results
 
-def find_ents(text):
-    if not text or not isinstance(text, str):
-        return []
-    try:
-        doc = nlp(text)
-    except Exception as e:
-        print(f"Error processing text in find_ents: {text[:100]}")
-        return []
-
-    entities = []
-    for sent in doc.sents:  # Process by sentence
-        entities.extend([ent.text for ent in sent.ents if ent.label_ in {'PERSON', 'ORG', 'NORP'}])
-    return entities
-
 def check_software_context(feedback_list, keywords, threshold):
     # Convert keywords into SpaCy vectors
     keyword_docs = [nlp(keyword) for keyword in keywords]
@@ -193,3 +179,20 @@ def check_software_context(feedback_list, keywords, threshold):
             })
 
     return relevant_phrases
+
+
+def find_ents(text):
+    if not text or not isinstance(text, str):
+        return []
+    try:
+        doc = nlp(text)
+    except Exception as e:
+        print(f"Error processing text in find_ents: {text[:100]}")
+        return []
+
+    entities = []
+    for sent in doc.sents:  # Process by sentence
+        entities.extend(
+            [ent.text for ent in sent.ents if ent.label_ in {"PERSON", "ORG", "NORP"}]
+        )
+    return entities
