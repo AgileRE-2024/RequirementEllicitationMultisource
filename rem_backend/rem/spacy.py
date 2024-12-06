@@ -23,29 +23,6 @@ for i, pattern in enumerate(patterns):
     matcher.add(f"GOAL_PATTERN_{i+1}", [pattern])
 
 
-# main function
-def extract_goals(_id):
-    data = query_collection.find_one({"_id": _id})
-    if not data:
-        return
-    
-    preprocessed_data = data.get("preprocessed_data", {})
-    updates = {}
-
-    handlers = {
-        "appstore": handle_appstore_data,
-        "playstore": handle_playstore_data,
-        "news": handle_news_data,
-    }
-
-    for source, handler in handlers.items():
-        source_data = preprocessed_data.get(source, [])
-        if source_data:
-            updates[f"user_stories.{source}"] = handler(source_data)
-    
-    if updates:
-        query_collection.update_one({"_id": _id}, {"$set": updates})
-
 def find_matches_review(doc):
     matches = matcher(doc)
     results = []
@@ -196,3 +173,27 @@ def find_ents(text):
             [ent.text for ent in sent.ents if ent.label_ in {"PERSON", "ORG", "NORP"}]
         )
     return entities
+
+
+# main function
+def extract_goals(_id):
+    data = query_collection.find_one({"_id": _id})
+    if not data:
+        return
+
+    preprocessed_data = data.get("preprocessed_data", {})
+    updates = {}
+
+    handlers = {
+        "appstore": handle_appstore_data,
+        "playstore": handle_playstore_data,
+        "news": handle_news_data,
+    }
+
+    for source, handler in handlers.items():
+        source_data = preprocessed_data.get(source, [])
+        if source_data:
+            updates[f"user_stories.{source}"] = handler(source_data)
+
+    if updates:
+        query_collection.update_one({"_id": _id}, {"$set": updates})
