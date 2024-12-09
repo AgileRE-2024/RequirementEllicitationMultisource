@@ -16,17 +16,6 @@ from rem.usecase import createUseCaseDiagram
 
 api = NinjaAPI()
 
-
-@api.get("queries/", response=list)
-def get_queries(request):
-    data = query_collection.find()
-    serialized_data = []
-    for document in data:
-        document["_id"] = str(document["_id"])
-        serialized_data.append(document)
-    return serialized_data
-
-
 @api.post("add_query/")
 def add_query(request, q: str):
     _id = str(uuid.uuid4())
@@ -38,6 +27,18 @@ def add_query(request, q: str):
         }
     )
     return _id
+
+@api.get("queries/", response=list)
+def get_queries(request):
+    data = query_collection.find()
+    serialized_data = []
+    for document in data:
+        document["_id"] = str(document["_id"])
+        serialized_data.append(document)
+    return serialized_data
+
+
+
 
 
 @api.get("get_data/")
