@@ -8,6 +8,11 @@ from newscatcherapi import NewsCatcherApiClient
 newscatcherapi = NewsCatcherApiClient(x_api_key=NEWS_CATCHER_API_KEY)
 
 
+def x_twitter_scraper(query, limit=10):
+    tweets = "Not implemented yet"
+    return tweets
+
+
 def googleplay_scraper(query, limit=10):
 
     # remove spaces from query
@@ -59,11 +64,6 @@ def googleplay_scraper(query, limit=10):
             "error": "Failed to retrieve data. No reviews found for the given query."
         }
     return output_data
-
-
-def x_twitter_scraper(query, limit=10):
-    tweets = "Not implemented yet"
-    return tweets
 
 
 def appstore_scraper(query, country="us", limit=10):
