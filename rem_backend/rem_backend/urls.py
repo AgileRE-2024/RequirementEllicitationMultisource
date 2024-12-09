@@ -20,6 +20,10 @@ from django.urls import include, path
 from rem.api import api
 
 urlpatterns = [
+        path(
+        "api/",
+        api.urls,
+    ),
     path(
         "admin/",
         admin.site.urls,
@@ -28,8 +32,5 @@ urlpatterns = [
         "rem/",
         include("rem.urls"),
     ),
-    path(
-        "api/",
-        api.urls,
-    ),
+
 ]
