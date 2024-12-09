@@ -112,7 +112,7 @@ def handle_news_data(news):
         )
         i += 1
 
-    # Return a dictionary with a single key "news"
+    # Return a dictionary with a single key "newsnewss"
     return {"news": preprocessed_data}
 
 
@@ -123,6 +123,25 @@ def removeEmoji(text):
 
 def stripData(text):
     return text.strip()
+
+def clean_news(text):
+    # Remove bullet points and arrow symbols
+    text = re.sub(r"[•→←↑↓↔↕⇆⇅⇄➔➜➤➥➦➨➩➪➮➯➱➲➳➵➸➹➺➻➼➽➾➡]", "", text)
+    # Remove links
+    text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
+    # Remove email addresses
+    text = re.sub(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", "", text)
+    # Remove phone numbers
+    text = re.sub(r"\+?\d{1,4}?[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}", "", text)
+    # Remove phrases related to news sources
+    text = re.sub(r"(Reported by|Source:|Contact us|For more details).*", "", text, flags=re.IGNORECASE)
+    # Remove extra whitespaces
+    text = re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r'[^\x00-\x7F]+', ' ', text) 
+    
+    #remove \n \t
+    text = text.replace("\n", " ")
+    return text
 
 
 def clean_app_review(text):
@@ -182,21 +201,3 @@ def clean_app_review(text):
     text = re.sub(r'\s+', ' ', text).strip()    # Normalize whitespace
     return text
 
-def clean_news(text):
-    # Remove bullet points and arrow symbols
-    text = re.sub(r"[•→←↑↓↔↕⇆⇅⇄➔➜➤➥➦➨➩➪➮➯➱➲➳➵➸➹➺➻➼➽➾➡]", "", text)
-    # Remove links
-    text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
-    # Remove email addresses
-    text = re.sub(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", "", text)
-    # Remove phone numbers
-    text = re.sub(r"\+?\d{1,4}?[-.\s]?\(?\d{1,4}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}", "", text)
-    # Remove phrases related to news sources
-    text = re.sub(r"(Reported by|Source:|Contact us|For more details).*", "", text, flags=re.IGNORECASE)
-    # Remove extra whitespaces
-    text = re.sub(r"\s+", " ", text).strip()
-    text = re.sub(r'[^\x00-\x7F]+', ' ', text) 
-    
-    #remove \n \t
-    text = text.replace("\n", " ")
-    return text
