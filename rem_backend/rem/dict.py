@@ -2,13 +2,7 @@ software_functionality_dict = [
     # General Terms
     "feature", "functionality", "module", "component",
 
-    # User Management
-    "login", "logout", "register", "user profile",
-    "edit profile", "password reset", "account settings",
 
-    # Data Management
-    "create record", "update record", "delete record", "import data",
-    "export data", "data backup", "upload file", "download file",
 
     # Search & Filter
     "search", "filter options", "sort by", "advanced search",
@@ -16,6 +10,14 @@ software_functionality_dict = [
     # Notifications
     "push notification", "email alert", "real-time update",
     "notification settings", "reminders",
+
+        # User Management
+    "login", "logout", "register", "user profile",
+    "edit profile", "password reset", "account settings",
+
+    # Data Management
+    "create record", "update record", "delete record", "import data",
+    "export data", "data backup", "upload file", "download file",
 
     # Security
     "encryption", "two-factor authentication", "access control",
