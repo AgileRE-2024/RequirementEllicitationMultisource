@@ -8,17 +8,17 @@ def preprocess(_id):
     data = query_collection.find_one({"_id": _id})
     preprocessed_data = {}
 
-    # preprocess appstore data
-    appstore_data = data.get("sources", {}).get("appstore", [])
-    if appstore_data:
-        appstore_dict = dict(handle_appstore_data(appstore_data))
-        preprocessed_data.update(appstore_dict)
-
     # preprocess playstore data
     playstore_data = data.get("sources", {}).get("playstore", [])
     if playstore_data:
         playstore_dict = dict(handle_playstore_data(playstore_data))
         preprocessed_data.update(playstore_dict)
+
+    # preprocess appstore data
+    appstore_data = data.get("sources", {}).get("appstore", [])
+    if appstore_data:
+        appstore_dict = dict(handle_appstore_data(appstore_data))
+        preprocessed_data.update(appstore_dict)
 
     # preprocess news data
     news_data = data.get("sources", {}).get("news", [])
