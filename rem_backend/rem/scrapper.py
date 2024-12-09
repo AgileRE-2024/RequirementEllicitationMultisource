@@ -8,9 +8,6 @@ from newscatcherapi import NewsCatcherApiClient
 newscatcherapi = NewsCatcherApiClient(x_api_key=NEWS_CATCHER_API_KEY)
 
 
-def x_twitter_scraper(query, limit=10):
-    tweets = "Not implemented yet"
-    return tweets
 
 
 def googleplay_scraper(query, limit=10):
@@ -104,6 +101,10 @@ def appstore_scraper(query, country="us", limit=10):
             "error": "Failed to retrive data. Status code: " + str(response.status_code)
         }
 
+
+def x_twitter_scraper(query, limit=10):
+    tweets = "Not implemented yet"
+    return tweets
 
 def news_scraper(query, limit=3):
     q = f"{query} + 'apps'"
