@@ -103,15 +103,17 @@ def preprocessing(request, id: str):
     )
     return query_collection.find_one({"_id": id}).get("preprocessed_data", {})
 
-@api.get("user_story/")
-def user_story(request, id:str):
-    extract_goals(id)
-    return query_collection.find_one({"_id": id}).get("user_stories", {})
 
 @api.get("getstories/")
 def get_stories(request, id:str):
     createUserStories(id)
     return query_collection.find_one({"_id": id}).get("stories", {})
+
+@api.get("user_story/")
+def user_story(request, id:str):
+    extract_goals(id)
+    return query_collection.find_one({"_id": id}).get("user_stories", {})
+
 
 @api.get("usecase/")
 def get_usecase(request, id:str):
