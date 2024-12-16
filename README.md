@@ -11,4 +11,4 @@
 8. run frontend using "npm run dev"
 
 ## NOTES:
-1. for newscatcher api key contact "aryapras22"
+Thank You https://www.newscatcherapi.com/ for providing API to this project
