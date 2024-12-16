@@ -11,4 +11,4 @@
 8. run frontend using "npm run dev"
 
 ## NOTES:
-Thank You https://www.newscatcherapi.com/ for providing API to this project
+1. NEWS CATCHER API contact aryapras22
