@@ -34,4 +34,4 @@ rem-frontend/*.tsbuildinfo
 rem-frontend/next-env.d.ts
 
 #backend
-./rem_backend/.env
+rem_backend/.env
