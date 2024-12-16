@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const LandingPage = () => {
-  const router = useRouter();
   const [route, setRoute] = useState("");
+  const router = useRouter();
+ 
 
   const placeholders = [
     "Covid 19",

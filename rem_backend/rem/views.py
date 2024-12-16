@@ -9,6 +9,10 @@ from rem_backend.settings import NEWS_API_KEY
 def index(request):
     return HttpResponse("<h1>App is running..</h1>")
 
+def get_all_query(request):
+    all_query = query_collection.find()
+    return HttpResponse(all_query)
+
 
 def add_query(request):
     records = {
@@ -18,6 +22,4 @@ def add_query(request):
     return HttpResponse("<h1>Query added successfully</h1>")
 
 
-def get_all_query(request):
-    all_query = query_collection.find()
-    return HttpResponse(all_query)
+

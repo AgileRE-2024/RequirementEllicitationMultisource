@@ -8,6 +8,8 @@ from newscatcherapi import NewsCatcherApiClient
 newscatcherapi = NewsCatcherApiClient(x_api_key=NEWS_CATCHER_API_KEY)
 
 
+
+
 def googleplay_scraper(query, limit=10):
 
     # remove spaces from query
@@ -61,11 +63,6 @@ def googleplay_scraper(query, limit=10):
     return output_data
 
 
-def x_twitter_scraper(query, limit=10):
-    tweets = "Not implemented yet"
-    return tweets
-
-
 def appstore_scraper(query, country="us", limit=10):
     url = "https://itunes.apple.com/search"
     params = {"term": query, "country": country, "entity": "software", "limit": limit}
@@ -104,6 +101,10 @@ def appstore_scraper(query, country="us", limit=10):
             "error": "Failed to retrive data. Status code: " + str(response.status_code)
         }
 
+
+def x_twitter_scraper(query, limit=10):
+    tweets = "Not implemented yet"
+    return tweets
 
 def news_scraper(query, limit=3):
     q = f"{query} + 'apps'"
