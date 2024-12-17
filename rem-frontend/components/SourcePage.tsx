@@ -7,7 +7,7 @@ import { ImNewspaper } from "react-icons/im";
 import { BsTwitterX } from "react-icons/bs";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";s
+import { useSearchParams } from "next/navigation";
 
 interface DataState {
   xtwitter: { loading: boolean; data: null };
@@ -17,8 +17,6 @@ interface DataState {
 }
 
 type SourceType = "xtwitter" | "news" | "playstore" | "appstore";
-
-
 
 const SourcePage = () => {
   const [dataState, setDataState] = useState<DataState>({
@@ -31,7 +29,6 @@ const SourcePage = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
   const id = searchParams.get("id");
-
 
   async function handleClickPreprocessing() {
     router.push(`/preprocessing?id=${id}`);
@@ -47,7 +44,7 @@ const SourcePage = () => {
       const response = await fetch(
         `http://127.0.0.1:8000/api/get_data/?q=${query}&type=${source}&id=${id}`
       );
-      
+
       const data = await response.json();
       setDataState((prevState) => ({
         ...prevState,
@@ -57,7 +54,6 @@ const SourcePage = () => {
       console.log(error);
     }
   }
-
 
   return (
     <div className='min-h-screen bg-black bg-dot-white/[0.2] flex flex-col justify-center items-center'>
